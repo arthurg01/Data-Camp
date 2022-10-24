@@ -17,10 +17,14 @@ with col1:
 
 with col2:
     model = load_model('model/model_test.h5')
-    #test image Normal
-    #img = load_img('C:\\Users\\annej\\Documents\\S7\\Data camp\\chest_xray\\chest_xray\\val\\NORMAL\\NORMAL2-IM-1427-0001.jpeg',target_size=(224,224))
-    #test image Pneumonia
-    img = load_img('C:\\Users\\annej\\Documents\\S7\\Data camp\\chest_xray\\chest_xray\\val\\PNEUMONIA\\person1946_bacteria_4874.jpeg',target_size=(224,224))
+    normal_pneumonia = st.selectbox('Which type do you want to analyze ?',('Normal','Pneumonia'))
+    if normal_pneumonia == 'Normal':
+        #test image Normal
+        img = load_img('C:\\Users\\annej\\Documents\\S7\\Data camp\\projet\\NORMAL2-IM-1430-0001.jpeg',target_size=(224,224))
+    elif normal_pneumonia == 'Pneumonia':
+        #test image Pneumonia
+        img = load_img('C:\\Users\\annej\\Documents\\S7\\Data camp\\projet\\person1946_bacteria_4874.jpeg',target_size=(224,224))
+
     but = st.button('Click here to see the chest X-ray ! 🔍')
     if but:
         st.image(img)
@@ -58,21 +62,5 @@ with col6:
     faty = 'Faty.png'
     st.image(faty)
     st.write('Fatima-Zahra IBRAHIMI')
-
-
-"""
-model=load_model('model/model_test.h5')
-img = st.file_uploader(label="Choose a file",type=['png','jpg','jpeg'])
-st.image(img)
-x=img_to_array(img)
-x=np.expand_dims(x, axis=0)
-img_data=preprocess_input(x)
-classes=model.predict(img_data)
-result=int(classes[0][0])
-if result==0:
-    st.write("Result is Pneumonia")
-else:
-    st.write("Result is Normal")
-"""
 
 st.markdown("<h2 style='text-align: center; color: grey;'>© Fatima-Zahra IBRAHIMI / Arthur GODINHO / Anne-Julie HOTTIN</h2>", unsafe_allow_html=True)
